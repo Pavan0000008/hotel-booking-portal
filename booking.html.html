@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Booking Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-color: #f4efe9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 500px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .section h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6b4f3f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5a4032;
+        }
+
+        /* SUPPORT SECTION */
+        .support-section {
+            width: 100%;
+            background-color: #0b3c5d;
+            color: white;
+            padding: 30px 0;
+        }
+
+        .support-container {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .support-box h4 {
+            margin-bottom: 10px;
+        }
+
+        .support-box p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Hotel Booking Portal</h2>
+
+    <form>
+
+        <div class="section">
+            <h3>Guest Details</h3>
+
+            <label>Full Name</label>
+            <input type="text">
+
+            <label>Email</label>
+            <input type="email">
+        </div>
+
+        <div class="section">
+            <h3>Booking Details</h3>
+
+            <label>Check-in Date</label>
+            <input type="date">
+
+            <label>Check-out Date</label>
+            <input type="date">
+        </div>
+
+        <div class="section">
+            <h3>Room Details</h3>
+
+            <label>Room Type</label>
+            <select>
+                <option>Single Room</option>
+                <option>Double Room</option>
+                <option>Deluxe Room</option>
+            </select>
+
+            <label>Guests</label>
+            <input type="number" min="1">
+        </div>
+
+        <button type="submit">Book Now</button>
+
+    </form>
+</div>
+
+<!-- DARK BLUE SUPPORT SECTION -->
+<div class="support-section">
+    <div class="support-container">
+
+        <div class="support-box">
+            <h4>Customer Support</h4>
+            <p>24/7 Assistance</p>
+            <p>Booking Help</p>
+            <p>Cancellation Support</p>
+        </div>
+
+        <div class="support-box">
+            <h4>Contact Us</h4>
+            <p>Email: support@hotelportal.com</p>
+            <p>Phone: +91 ***********</p>
+            <p>Live Chat Available</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
