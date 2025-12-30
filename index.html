@@ -5,63 +5,75 @@
     <title>Hotel Booking Portal - Login</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
         body {
             margin: 0;
             height: 100vh;
-            background-color: #f4efe9;
+            background: linear-gradient(135deg, #f4efe9, #e6ddd3);
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .login-box {
-            width: 350px;
+        .login-container {
             background-color: #ffffff;
+            width: 380px;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            position: relative;
         }
 
-        .login-box h2 {
-            text-align: center;
+        .logo {
+            width: 90px;
+            height: 90px;
+            margin: -75px auto 15px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 55px;
+            height: 55px;
+        }
+
+        h2 {
             margin-bottom: 25px;
-            color: #333;
+            color: #3e2f25;
         }
 
         label {
+            display: block;
+            text-align: left;
             font-size: 14px;
             color: #555;
         }
 
-        input[type="text"],
-        input[type="password"] {
+        input {
             width: 100%;
             padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
+            margin: 8px 0 18px;
             border-radius: 6px;
-            font-size: 14px;
+            border: 1px solid #ccc;
         }
 
         input:focus {
-            outline: none;
             border-color: #6b4f3f;
+            outline: none;
         }
 
         input[type="submit"] {
-            width: 100%;
-            padding: 10px;
             background-color: #6b4f3f;
             color: white;
             border: none;
-            border-radius: 8px;
+            padding: 12px;
             font-size: 16px;
+            border-radius: 8px;
             cursor: pointer;
         }
 
@@ -70,33 +82,36 @@
         }
 
         .links {
-            text-align: center;
             margin-top: 15px;
         }
 
         .links a {
-            text-decoration: none;
-            color: #6b4f3f;
             font-size: 13px;
-        }
-
-        .links a:hover {
-            text-decoration: underline;
+            color: #6b4f3f;
+            text-decoration: none;
         }
     </style>
 </head>
 
 <body>
 
-<div class="login-box">
+<div class="login-container">
+
+    <!-- ONLINE LOGO -->
+    <div class="logo">
+        <img 
+          src="https://cdn-icons-png.flaticon.com/512/139/139899.png" 
+          alt="Hotel Logo">
+    </div>
+
     <h2>User Login</h2>
 
     <form action="booking.html" method="get">
-        <label>Username</label>
-        <input type="text" name="username">
+        <label>Email or Phone</label>
+        <input type="text" required>
 
         <label>Password</label>
-        <input type="password" name="password">
+        <input type="password" required>
 
         <input type="submit" value="Login">
     </form>
@@ -105,6 +120,7 @@
         <a href="#">Forgot Password?</a><br>
         <a href="#">Create New Account</a>
     </div>
+
 </div>
 
 </body>
