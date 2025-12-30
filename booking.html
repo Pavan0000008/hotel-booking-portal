@@ -1,174 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hotel Booking Portal</title>
+<meta charset="UTF-8">
+<title>Hotel Booking Portal</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background-color: #f4efe9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f4efe9;
+    display: flex;
+}
 
-        .container {
-            background: #ffffff;
-            width: 500px;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
+/* ===== SIDEBAR (ANIMATED) ===== */
+.sidebar {
+    width: 60px;
+    background-color: #0b3c5d;
+    color: white;
+    padding: 20px 10px;
+    transition: width 0.4s ease;
+    overflow: hidden;
+}
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+/* ===== SIDEBAR (REAL ANIMATION) ===== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 70px;
+    background-color: #0b3c5d;
+    color: white;
+    padding: 20px 10px;
+    overflow: hidden;
 
-        .section {
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
+    /* animation */
+    transition: width 0.4s ease-in-out;
+}
 
-        .section h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
+.sidebar:hover {
+    width: 240px;
+}
 
-        label {
-            font-size: 14px;
-            display: block;
-            margin-bottom: 5px;
-        }
+/* content animation */
+.sidebar h2,
+.sidebar p {
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 12px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
+/* when sidebar opens */
+.sidebar:hover h2,
+.sidebar:hover p {
+    opacity: 1;
+    transform: translateX(0);
+}
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #6b4f3f;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-        button:hover {
-            background-color: #5a4032;
-        }
+.sidebar p {
+    margin: 20px 0;
+    font-size: 14px;
+}
+.main {
+    margin-left: 70px;
+    transition: margin-left 0.4s ease-in-out;
+}
 
-        /* SUPPORT SECTION */
-        .support-section {
-            width: 100%;
-            background-color: #0b3c5d;
-            color: white;
-            padding: 30px 0;
-        }
+.sidebar:hover ~ .main {
+    margin-left: 240px;
+}
 
-        .support-container {
-            max-width: 900px;
-            margin: auto;
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-        }
 
-        .support-box h4 {
-            margin-bottom: 10px;
-        }
+/* ===== MAIN AREA ===== */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 
-        .support-box p {
-            margin: 5px 0;
-            font-size: 14px;
-        }
-    </style>
+/* ===== TOP BAR ===== */
+.topbar {
+    background-color: #ffffff;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-area img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+}
+
+.logout {
+    background-color: #d9534f;
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.logout:hover {
+    background-color: #c9302c;
+}
+
+/* ===== CONTENT ===== */
+.content {
+    padding: 30px;
+}
+
+.content h1 {
+    margin-bottom: 25px;
+    color: #3e2f25;
+}
+
+/* ===== FORM SECTIONS ===== */
+.section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.section h3 {
+    margin-top: 0;
+    color: #6b4f3f;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+input, select {
+    width: 100%;
+    padding: 9px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* ===== CSS-ONLY VALIDATION ===== */
+.warning {
+    display: none;
+    color: red;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.section:has(:invalid) .warning {
+    display: block;
+}
+
+/* ===== BUTTON ===== */
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #6b4f3f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5a4032;
+}
+
+/* ===== SUPPORT ===== */
+.support {
+    background-color: #0b3c5d;
+    color: white;
+    padding: 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.support p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
-    <h2>Hotel Booking Portal</h2>
-
-    <form>
-
-        <div class="section">
-            <h3>Guest Details</h3>
-
-            <label>Full Name</label>
-            <input type="text">
-
-            <label>Email</label>
-            <input type="email">
-        </div>
-
-        <div class="section">
-            <h3>Booking Details</h3>
-
-            <label>Check-in Date</label>
-            <input type="date">
-
-            <label>Check-out Date</label>
-            <input type="date">
-        </div>
-
-        <div class="section">
-            <h3>Room Details</h3>
-
-            <label>Room Type</label>
-            <select>
-                <option>Single Room</option>
-                <option>Double Room</option>
-                <option>Deluxe Room</option>
-            </select>
-
-            <label>Guests</label>
-            <input type="number" min="1">
-        </div>
-
-        <button type="submit">Book Now</button>
-
-    </form>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>Hotel</h2>
+    <p>🏨 Book Rooms</p>
+    <p>📅 My Bookings</p>
+    <p>📞 Support</p>
 </div>
 
-<!-- DARK BLUE SUPPORT SECTION -->
-<div class="support-section">
-    <div class="support-container">
+<!-- MAIN -->
+<div class="main">
 
-        <div class="support-box">
-            <h4>Customer Support</h4>
-            <p>24/7 Assistance</p>
-            <p>Booking Help</p>
-            <p>Cancellation Support</p>
-        </div>
-
-        <div class="support-box">
-            <h4>Contact Us</h4>
-            <p>Email: support@hotelportal.com</p>
-            <p>Phone: +91 ***********</p>
-            <p>Live Chat Available</p>
-        </div>
-
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="user-area">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User">
+        <a href="index.html" class="logout">Logout</a>
     </div>
 </div>
 
+<!-- CONTENT -->
+<div class="content">
+<h1>Book Your Stay</h1>
+
+<form>
+
+<!-- Guest Details -->
+<div class="section">
+    <h3>Guest Details</h3>
+    <label>Full Name</label>
+    <input type="text" required>
+
+    <label>Email</label>
+    <input type="email" required>
+
+    <div class="warning">These details not entered</div>
+</div>
+
+<!-- Booking Dates -->
+<div class="section">
+    <h3>Booking Dates</h3>
+    <label>Check-in</label>
+    <input type="date" required>
+
+    <label>Check-out</label>
+    <input type="date" required>
+
+    <div class="warning">These details not entered</div>
+</div>
+
+<!-- Room Details -->
+<div class="section">
+    <h3>Room Details</h3>
+    <label>Room Type</label>
+    <select required>
+        <option value="">Select</option>
+        <option>Single</option>
+        <option>Double</option>
+        <option>Deluxe</option>
+    </select>
+
+    <label>Guests</label>
+    <input type="number" min="1" required>
+
+    <div class="warning">These details not entered</div>
+</div>
+
+<button type="submit">Confirm Booking</button>
+
+</form>
+</div>
+
+<!-- SUPPORT -->
+<div class="support">
+    <div>
+        <h4>Customer Support</h4>
+        <p>24/7 Assistance</p>
+        <p>Booking Help</p>
+    </div>
+    <div>
+        <h4>Contact Us</h4>
+        <p>Email: support@hotelportal.com</p>
+        <p>Phone: +91 ***********</p>
+    </div>
+</div>
+
+</div>
 </body>
 </html>
