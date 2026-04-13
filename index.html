@@ -2,106 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hotel Booking - Login</title>
+<title>Hotel Login</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
-}
+* { box-sizing: border-box; font-family: Arial; }
 
 body {
     height: 100vh;
-    background: linear-gradient(135deg, #3e2f25, #6b4f3f);
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(135deg, #3e2f25, #6b4f3f);
 }
 
-/* Glass effect container */
 .container {
     width: 350px;
     padding: 30px;
     border-radius: 15px;
     background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    text-align: center;
+    backdrop-filter: blur(10px);
     color: white;
 }
 
-.logo img {
-    width: 60px;
-    margin-bottom: 10px;
-}
-
-h2 {
-    margin-bottom: 20px;
-}
-
-/* Input group */
-.input-group {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.input-group input {
+input {
     width: 100%;
-    padding: 12px 40px;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
     border: none;
-    border-radius: 8px;
     outline: none;
 }
 
-.input-group span {
-    position: absolute;
-    left: 10px;
-    top: 12px;
-    color: #555;
+.error {
+    color: #ffb3b3;
+    font-size: 12px;
+    display: none;
 }
 
-/* Password toggle */
-.toggle {
-    position: absolute;
-    right: 10px;
-    top: 12px;
-    cursor: pointer;
+input.invalid {
+    border: 2px solid red;
 }
 
-/* Button */
 button {
+    margin-top: 15px;
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: none;
     border-radius: 8px;
-    background: #fff;
-    color: #3e2f25;
-    font-weight: bold;
+    background: white;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #ddd;
-}
-
-.links {
-    margin-top: 15px;
-}
-
-.links a {
-    color: #ddd;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-/* Responsive */
-@media(max-width: 400px){
-    .container {
-        width: 90%;
-    }
 }
 </style>
 </head>
@@ -110,66 +59,64 @@ button:hover {
 
 <div class="container">
 
-    <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/139/139899.png">
-    </div>
+<h2>Login</h2>
 
-    <h2>Login</h2>
+<form onsubmit="return validateForm()">
 
-    <form onsubmit="return validateForm()">
+<label>Email or Phone</label>
+<input type="text" id="email">
+<div class="error" id="emailError"></div>
 
-        <div class="input-group">
-            <span>📧</span>
-            <input type="text" id="email" placeholder="Email or Phone">
-        </div>
+<label>Password</label>
+<input type="password" id="password">
+<div class="error" id="passError"></div>
 
-        <div class="input-group">
-            <span>🔒</span>
-            <input type="password" id="password" placeholder="Password">
-            <span class="toggle" onclick="togglePassword()">👁️</span>
-        </div>
+<button>Login</button>
 
-        <button id="loginBtn">Login</button>
-
-    </form>
-
-    <div class="links">
-        <a href="#">Forgot Password?</a><br>
-        <a href="#">Create Account</a>
-    </div>
+</form>
 
 </div>
 
 <script>
-function togglePassword() {
-    let pass = document.getElementById("password");
-    pass.type = pass.type === "password" ? "text" : "password";
-}
-
 function validateForm() {
-    let email = document.getElementById("email").value;
-    let pass = document.getElementById("password").value;
 
-    if(email === "" || pass === ""){
-        alert("All fields required!");
-        return false;
+    let email = document.getElementById("email");
+    let pass = document.getElementById("password");
+
+    let emailVal = email.value.trim();
+    let passVal = pass.value.trim();
+
+    let valid = true;
+
+    // Reset
+    document.getElementById("emailError").style.display = "none";
+    document.getElementById("passError").style.display = "none";
+    email.classList.remove("invalid");
+    pass.classList.remove("invalid");
+
+    // Email or Phone validation
+    let emailRegex = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    let phoneRegex = /^[0-9]{10}$/;
+
+    if (!emailRegex.test(emailVal) && !phoneRegex.test(emailVal)) {
+        document.getElementById("emailError").innerText = "Enter valid Email or 10-digit phone";
+        document.getElementById("emailError").style.display = "block";
+        email.classList.add("invalid");
+        valid = false;
     }
 
-    if(pass.length < 6){
-        alert("Password must be at least 6 characters");
-        return false;
+    // Password validation
+    let strongPass = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[\W]).{8,}$/;
+
+    if (!strongPass.test(passVal)) {
+        document.getElementById("passError").innerText =
+            "Password must be 8+ chars, include uppercase, number & symbol";
+        document.getElementById("passError").style.display = "block";
+        pass.classList.add("invalid");
+        valid = false;
     }
 
-    // fake loading effect
-    let btn = document.getElementById("loginBtn");
-    btn.innerText = "Logging in...";
-    
-    setTimeout(() => {
-        alert("Login Successful (Demo)");
-        btn.innerText = "Login";
-    }, 1500);
-
-    return false; // stop actual submit (demo)
+    return valid;
 }
 </script>
 
